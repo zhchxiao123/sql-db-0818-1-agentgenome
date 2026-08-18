@@ -1,6 +1,16 @@
 # 模块地图 L1:这个模块怎么跑、依赖谁。
 id: sql-db-0818-1
+lang: unknown
 entrypoints: []
 depends_on: []
-features: []
+doc: genome/knowledge/modules/sql-db-0818-1/overview.md
+confidence: 0.95
+features:
+- id: repo-scaffold
+  summary: 仓库脚手架:仅含一行标题的 README.md,无任何业务代码
+  scope:
+  - repos/sql-db-0818-1/README.md
+  produced_by: knowledge-init@2.5.0
+  no_card: 仓库工作树只有 15 字节的 README.md(内容为 `# sql-db-0818-1`),没有源码、测试、构建配置、schema 或数据存储;无法提炼承重不变量、异常路径或测试证据,写卡片只能编造,违反"不确定就标低置信度、不要编造"铁律。等业务代码落地后由后续
+    knowledge-init 补功能点卡片。
 submaps: []
