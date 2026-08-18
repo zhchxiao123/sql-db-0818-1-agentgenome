@@ -1,0 +1,57 @@
+version: 2
+module: sql-db-0818-1
+environments:
+  project:
+    adapter: host.trusted
+    options: {}
+  host:
+    adapter: host.trusted
+    options: {}
+gates:
+- id: unit
+  environment: project
+  command:
+    kind: argv
+    argv:
+    - make
+    - test
+    cwd: .
+  provenance:
+    origin: detector
+    producer: makefile@1
+    evidence:
+    - kind: repository-entrypoint
+      path: Makefile
+      locator: target:test
+      digest: sha256:6bbaaf6823a30409fb2c878065c0b883822b8c142b6afeeeafe2c4e9f11a4307
+  required: true
+  timeout_s: 600
+  parser: null
+  junit_xml_path: null
+- id: secrets
+  environment: host
+  command:
+    kind: argv
+    argv:
+    - gitleaks
+    - detect
+    - --source
+    - .
+    - --no-banner
+    - --no-git
+    - --redact
+    - --exit-code
+    - '1'
+    cwd: .
+  provenance:
+    origin: platform
+    producer: agentgenome.secrets@1
+    evidence:
+    - kind: platform-policy
+      path: ''
+      locator: builtin:gitleaks-detect
+      digest: builtin:agentgenome.secrets@1
+  required: true
+  timeout_s: 600
+  parser: null
+  junit_xml_path: null
