@@ -1,0 +1,23 @@
+id: write-tests
+# 1.1.0:覆盖对应关系改用验收标准的 id,不再拿全文当 key(PRD 53)。
+version: 1.1.0
+summary: 按验收标准写用例,写完是红的——实现由开发员工接手
+kind: agentic
+
+trigger:
+  states: [DEVELOPING]
+
+inputs:
+  schema:
+    type: object
+    required: [requirement]
+    properties:
+      requirement: {type: string}
+      acceptance: {type: array, items: {type: object}}
+      module_ids: {type: array, items: {type: string}}
+
+outputs:
+  schema_ref: schemas/out.json
+
+compat:
+  runtimes: [claude-code]

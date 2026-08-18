@@ -1,0 +1,27 @@
+id: requirement-analysis
+# 1.1.0:产物加 `split` 互斥变体(PRD 48)——"这不是一个任务能交付的"从此是一个合法结论。
+# 1.2.0:验收标准从裸字符串升成对象(PRD 53)——它要有稳定 id 才能被下游引用,
+#        而"这次在哪一层验"从此有了自己的一格。
+version: 1.2.0
+summary: 读需求与项目地图,产出这次要动哪些模块、验收标准与预估风险;拆不动时产出拆分提案
+kind: agentic
+
+# plan 类:决定"这一个任务怎么打"。**归属排他**——加载器会拒收两个员工同时声明它的花名册。
+ownership: plan
+
+trigger:
+  states: [CREATED]
+
+inputs:
+  schema:
+    type: object
+    required: [requirement]
+    properties:
+      requirement: {type: string}
+      task_id: {type: string}
+
+outputs:
+  schema_ref: schemas/out.json
+
+compat:
+  runtimes: [claude-code]
